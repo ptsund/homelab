@@ -1,0 +1,32 @@
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:2.7.6
+    build: .
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    networks:
+      backend:
+        ipv4_address: 192.168.50.131
+    volumes:
+      - data:/data
+      - config:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    environment:
+      - DOMAIN=${DOMAIN}
+      - EMAIL=${EMAIL}
+      - API_USERNAME=${API_USERNAME}
+      - API_PASSWORD=${API_PASSWORD}
+
+volumes:
+  data:
+  config:
+
+networks:
+  backend:
+    external: true

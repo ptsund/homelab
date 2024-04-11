@@ -1,0 +1,28 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/latest/configs/service-widgets
+
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+
+- openweathermap:
+    label: Norrköping
+    latitude: 58.5867021
+    longitude: 16.1430553
+    units: metric
+    apiKey: 65d99185df3acca947a4fcabacb7335e
+    format:
+      maximumFractionDigits: 1
+
+- search:
+    provider: [google, duckduckgo]
+    showSearchSuggestions: true
+    target: _blank
+
+- datetime:
+    locale: sv
+    format:
+      timeStyle: short
+      dateStyle: long

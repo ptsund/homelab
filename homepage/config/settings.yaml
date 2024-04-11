@@ -1,0 +1,5 @@
+title: psm homelab
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
