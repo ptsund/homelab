@@ -16,7 +16,7 @@ services:
     restart: always
     networks:
       backend:
-        ipv4_address: 192.168.50.136
+        ipv4_address: 10.1.1.107
 
   immich_microservices:
     container_name: immich_microservices
@@ -33,7 +33,7 @@ services:
     restart: always
     networks:
       backend:
-        ipv4_address: 192.168.50.137
+        ipv4_address: 10.1.1.108
 
   immich_machine_learning:
     container_name: immich_machine_learning
@@ -45,7 +45,7 @@ services:
     restart: always
     networks:
       backend:
-        ipv4_address: 192.168.50.138
+        ipv4_address: 10.1.1.109
 
   redis:
     container_name: immich_redis
@@ -53,7 +53,7 @@ services:
     restart: always
     networks:
       backend:
-        ipv4_address: 192.168.50.139
+        ipv4_address: 10.1.1.110
 
   database:
     container_name: immich_postgres
@@ -67,7 +67,7 @@ services:
     restart: always
     networks:
       backend:
-        ipv4_address: 192.168.50.140
+        ipv4_address: 10.1.1.111
 
 volumes:
   pgdata:

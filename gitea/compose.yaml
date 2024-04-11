@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
     networks:
       backend:
-        ipv4_address: 192.168.50.133
+        ipv4_address: 10.1.1.105
     volumes:
       - data:/data
       - /etc/timezone:/etc/timezone:ro
@@ -35,7 +35,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
     networks:
       backend:
-        ipv4_address: 192.168.50.134
+        ipv4_address: 10.1.1.106
     volumes:
       - mysql:/var/lib/mysql
 
