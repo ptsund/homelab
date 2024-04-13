@@ -1,0 +1,21 @@
+*.{$DOMAIN} {
+  tls {
+    issuer acme {
+      email {$EMAIL}
+      propagation_timeout "15m0s"
+      dns loopia {
+        username {$API_USER}
+        password {$API_PASS}
+      }
+    }
+  }
+
+  @dashboard host dashboard.{$DOMAIN}
+  handle @dashboard {
+    reverse_proxy 10.1.1.103:3000
+  }
+
+  handle {
+    abort
+  }
+}

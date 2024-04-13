@@ -20,8 +20,8 @@ services:
     environment:
       - DOMAIN=${DOMAIN}
       - EMAIL=${EMAIL}
-      - API_USERNAME=${API_USERNAME}
-      - API_PASSWORD=${API_PASSWORD}
+      - API_USER=${API_USER}
+      - API_PASS=${API_PASS}
 
 volumes:
   data:
