@@ -1,0 +1,4 @@
+- name: Deploy
+  community.docker.docker_compose_v2:
+    project_src: ../caddy
+  register: output

@@ -1,0 +1,19 @@
+name: ansible
+on: [push]
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: deploy.yaml
+          directory: ../../ansible
+          configuration: |
+            [defaults]
+            transport = local
+          inventory: |
+            127.0.0.1
