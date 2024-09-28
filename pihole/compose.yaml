@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
     networks:
       backend:
-        ipv4_address: 10.1.1.100
+        ipv4_address: 10.10.10.100
 
 volumes:
   etc_pihole:

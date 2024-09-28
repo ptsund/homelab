@@ -35,7 +35,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
     networks:
       backend:
-        ipv4_address: 10.1.1.106
+        ipv4_address: 10.10.10.106
     volumes:
       - mysql:/var/lib/mysql
 

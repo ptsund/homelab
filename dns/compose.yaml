@@ -10,7 +10,7 @@ services:
       - '53:53/udp'
     networks:
       backend:
-        ipv4_address: 10.1.1.101
+        ipv4_address: 10.10.10.101
     volumes:
       - ./config/:/etc/bind:rw
     restart: unless-stopped
