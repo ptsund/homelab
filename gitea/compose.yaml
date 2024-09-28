@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
     networks:
       backend:
-        ipv4_address: 10.1.1.105
+        ipv4_address: 10.10.10.105
     volumes:
       - data:/data
       - /etc/timezone:/etc/timezone:ro
