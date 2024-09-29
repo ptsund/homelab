@@ -1,7 +1,7 @@
 services:
   caddy:
     container_name: caddy
-    image: caddy:2.7.6
+    image: embury/caddy:latest
     build: .
     restart: unless-stopped
     cap_add:
