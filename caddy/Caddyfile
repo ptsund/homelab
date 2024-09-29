@@ -15,7 +15,7 @@
     reverse_proxy 10.0.0.1:8443
   }
 
-  @nas host lab.{$DOMAIN}
+  @lab host lab.{$DOMAIN}
   handle @lab {
     reverse_proxy 10.0.10.100:80
   }
