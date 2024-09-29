@@ -20,8 +20,8 @@ services:
     environment:
       - DOMAIN=${DOMAIN}
       - EMAIL=${EMAIL}
-      - API_USER=${API_USER}
-      - API_PASS=${API_PASS}
+      - API_USER=${CADDY_API_USER}
+      - API_PASS=${CADDY_API_PASS}
 
 volumes:
   data:

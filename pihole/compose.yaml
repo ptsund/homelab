@@ -8,7 +8,7 @@ services:
       - '80:80/tcp'
     environment:
       TZ: 'Europe/Stockholm'
-      WEBPASSWORD: ${PASSWD}
+      WEBPASSWORD: ${PIHOLE_PASSWORD}
     volumes:
       - etc_pihole:/etc/pihole
       - etc_dnsmasq:/etc/dnsmasq.d

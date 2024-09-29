@@ -4,10 +4,16 @@ services:
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     command: ['start.sh', 'immich']
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${IMMICH_UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - .env
+      - DB_HOSTNAME=immich_postgres
+      - REDIS_HOSTNAME=immich_redis
+      - UPLOAD_LOCATION=${IMMICH_UPLOAD_LOCATION}
+      - IMMICH_VERSION=${IMMICH_VERSION}
+      - DB_PASSWORD=${IMMICH_DB_PASSWORD}
+      - DB_USERNAME=${IMMICH_DB_USERNAME}
+      - DB_DATABASE_NAME=${IMMICH_DB_NAME}
     ports:
       - 2283:3001
     depends_on:
@@ -23,10 +29,16 @@ services:
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     command: ['start.sh', 'microservices']
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${IMMICH_UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     env_file:
-      - .env
+      - DB_HOSTNAME=immich_postgres
+      - REDIS_HOSTNAME=immich_redis
+      - UPLOAD_LOCATION=${IMMICH_UPLOAD_LOCATION}
+      - IMMICH_VERSION=${IMMICH_VERSION}
+      - DB_PASSWORD=${IMMICH_DB_PASSWORD}
+      - DB_USERNAME=${IMMICH_DB_USERNAME}
+      - DB_DATABASE_NAME=${IMMICH_DB_NAME}
     depends_on:
       - redis
       - database
@@ -41,7 +53,13 @@ services:
     volumes:
       - model_cache:/cache
     env_file:
-      - .env
+      - DB_HOSTNAME=immich_postgres
+      - REDIS_HOSTNAME=immich_redis
+      - UPLOAD_LOCATION=${IMMICH_UPLOAD_LOCATION}
+      - IMMICH_VERSION=${IMMICH_VERSION}
+      - DB_PASSWORD=${IMMICH_DB_PASSWORD}
+      - DB_USERNAME=${IMMICH_DB_USERNAME}
+      - DB_DATABASE_NAME=${IMMICH_DB_NAME}
     restart: always
     networks:
       backend:
@@ -59,9 +77,9 @@ services:
     container_name: immich_postgres
     image: registry.hub.docker.com/tensorchord/pgvecto-rs:pg14-v0.2.0@sha256:90724186f0a3517cf6914295b5ab410db9ce23190a2d9d0b9dd6463e3fa298f0
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_DB: ${DB_DATABASE_NAME}
+      POSTGRES_PASSWORD: ${IMMICH_DB_PASSWORD}
+      POSTGRES_USER: ${IMMICH_DB_USERNAME}
+      POSTGRES_DB: ${IMMICH_DB_NAME}
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: always

@@ -6,10 +6,10 @@ services:
       - USER_UID=1000
       - USER_GID=1000
       - GITEA__database__DB_TYPE=mysql
-      - GITEA__database__HOST=${DB_HOST}
-      - GITEA__database__NAME=${DB_NAME}
-      - GITEA__database__USER=${DB_USER}
-      - GITEA__database__PASSWD=${DB_PASS}
+      - GITEA__database__HOST=gitea_db:3306
+      - GITEA__database__NAME=${GITEA_DB_NAME}
+      - GITEA__database__USER=${GITEA_DB_USER}
+      - GITEA__database__PASSWD=${GITEA_DB_PASS}
     restart: unless-stopped
     networks:
       backend:
@@ -29,10 +29,10 @@ services:
     container_name: gitea_db
     restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=${DB_NAME}
-      - MYSQL_USER=${DB_USER}
-      - MYSQL_PASSWORD=${DB_PASS}
-      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - MYSQL_DATABASE=${GITEA_DB_NAME}
+      - MYSQL_USER=${GITEA_DB_USER}
+      - MYSQL_PASSWORD=${GITEA_DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${GITEA_DB_PASS}
     networks:
       backend:
         ipv4_address: 10.10.10.106
