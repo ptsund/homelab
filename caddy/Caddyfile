@@ -15,6 +15,15 @@
     reverse_proxy 10.0.0.1:8443
   }
 
+  @datacenter host datacenter.{$DOMAIN}
+  handle @datacenter {
+    reverse_proxy 10.0.10.1:8006 {
+      transport http {
+        tls_insecure_skip_verify
+      }
+    }
+  }
+
   @lab host lab.{$DOMAIN}
   handle @lab {
     reverse_proxy 10.0.10.100:80
@@ -28,6 +37,16 @@
   @dashboard host dashboard.{$DOMAIN}
   handle @dashboard {
     reverse_proxy 10.10.10.103:3000
+  }
+
+  @docker host docker.{$DOMAIN}
+  handle @docker {
+    reverse_proxy 10.10.10.104:9000
+  }
+
+  @git host git.{$DOMAIN}
+  handle @git {
+    reverse_proxy 10.10.10.105:3000
   }
 
   handle {
