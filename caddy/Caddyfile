@@ -29,24 +29,54 @@
     reverse_proxy 10.0.10.100:80
   }
 
-  @nas host nas.{$DOMAIN}
-  handle @nas {
-    reverse_proxy 10.0.10.101:80
-  }
-
-  @dashboard host dashboard.{$DOMAIN}
-  handle @dashboard {
-    reverse_proxy 10.10.10.103:3000
+  @start host start.{$DOMAIN}
+  handle @start {
+    reverse_proxy homepage:3000
   }
 
   @docker host docker.{$DOMAIN}
   handle @docker {
-    reverse_proxy 10.10.10.104:9000
+    reverse_proxy portainer:9000
   }
 
   @git host git.{$DOMAIN}
   handle @git {
-    reverse_proxy 10.10.10.105:3000
+    reverse_proxy gitea:3000
+  }
+
+  @gallery host gallery.{$DOMAIN}
+  handle @gallery {
+    reverse_proxy immich_server:3001
+  }
+
+  @torrents host torrents.{$DOMAIN}
+  handle @torrents {
+    reverse_proxy 10.0.10.100:8085
+  }
+
+  @prowlarr host prowlarr.{$DOMAIN}
+  handle @prowlarr {
+    reverse_proxy 10.0.10.100:9696
+  }
+
+  @radarr host radarr.{$DOMAIN}
+  handle @radarr {
+    reverse_proxy 10.0.10.100:7878
+  }
+
+  @sonarr host sonarr.{$DOMAIN}
+  handle @sonarr {
+    reverse_proxy 10.0.10.100:8989
+  }
+
+  @bazarr host bazarr.{$DOMAIN}
+  handle @bazarr {
+    reverse_proxy 10.0.10.100:6767
+  }
+
+  @play host play.{$DOMAIN}
+  handle @play {
+    reverse_proxy jellyfin:8096
   }
 
   handle {
