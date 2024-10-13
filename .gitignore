@@ -3,3 +3,4 @@ cert/**
 homepage/config/logs
 jellyfin/config
 jellyfin/cache
+tailscale/state

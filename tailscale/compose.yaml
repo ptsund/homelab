@@ -1,0 +1,17 @@
+services:
+  tailscale:
+    image: tailscale/tailscale
+    container_name: tailscale
+    cap_add:
+      - net_admin
+      - sys_module
+    volumes:
+      - ./state:/var/lib/tailscale
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      - TS_AUTHKEY=${TAILSCALE_AUTH_KEY}
+      - TS_HOSTNAME=lab
+      - TS_EXTRA_ARGS=--advertise-routes=${TAILSCALE_SUBNET} --reset
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+    restart: unless-stopped
