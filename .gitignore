@@ -1,3 +1,5 @@
 **/.env*
 cert/**
 homepage/config/logs
+jellyfin/config
+jellyfin/cache
