@@ -3,3 +3,17 @@ title: psm homelab
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
+
+layout:
+  Bookmarks:
+    tab: Bookmarks
+    style: row
+    columns: 4
+
+  Services:
+    tab: Services
+    columns: 4
+
+  Media:
+    tab: Media
+    style: row
