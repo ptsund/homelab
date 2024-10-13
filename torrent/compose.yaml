@@ -1,0 +1,94 @@
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8085:8085 # qbittorrent
+      - 9696:9696 # Prowlarr
+      - 7878:7878 # Radarr
+      - 8989:8989 # Sonarr
+      - 6767:6767 # Bazarr
+    volumes:
+      - ./gluetun:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=expressvpn
+      - VPN_TYPE=openvpn
+      - OPENVPN_USER=${VPN_USER}
+      - OPENVPN_PASSWORD=${VPN_PASSWORD}
+      - SERVER_COUNTRIES=Sweden
+      - TZ=Europe/Stockholm
+      - UPDATER_PERIOD=24h
+    restart: always
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+      - WEBUI_PORT=8085
+    volumes:
+      - ./qbittorrent:/config
+      - ${DATA_LOCATION}/torrents:/data/torrents
+    depends_on:
+      - gluetun
+    restart: always
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - ./prowlarr:/config
+    restart: always
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - ./radarr:/config
+      - ${DATA_LOCATION}:/data
+    restart: always
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - ./sonarr:/config
+      - ${DATA_LOCATION}:/data
+    restart: always
+
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - ./bazarr:/config
+      - ${DATA_LOCATION}:/data
+    restart: always

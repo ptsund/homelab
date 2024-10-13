@@ -4,3 +4,9 @@ homepage/config/logs
 jellyfin/config
 jellyfin/cache
 tailscale/state
+torrent/bazarr
+torrent/gluetun
+torrent/prowlarr
+torrent/qbittorrent
+torrent/radarr
+torrent/sonarr
